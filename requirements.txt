@@ -1,0 +1,3 @@
+heroku3
+bencoding
+gitpython
