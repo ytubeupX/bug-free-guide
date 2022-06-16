@@ -293,7 +293,7 @@ def main():
     LOGGER.info("⚠️ If Any optional vars not be filled it will use Defaults vars")
     LOGGER.info("Yaaay!!! Bot Started!")
     signal.signal(signal.SIGINT, fs_utils.exit_clean_up)
-    rss_init()
+    
 
 app.start()
 main()
