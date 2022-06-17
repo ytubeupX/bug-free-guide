@@ -66,13 +66,16 @@ load_dotenv('config.env')
 SERVER_PORT = os.environ.get('SERVER_PORT', None)
 PORT = os.environ.get('PORT', SERVER_PORT)
 web = subprocess.Popen([f"gunicorn wserver:start_server --bind 0.0.0.0:{PORT} --worker-class aiohttp.GunicornWebWorker"], shell=True)
-alive = subprocess.Popen(["python3", "alive.py"])
-subprocess.run(["chmod", "+x", "aria.sh"])
-subprocess.run(["./aria.sh"], shell=True)
-subprocess.run(["mkdir", "-p", "qBittorrent/config"])
-subprocess.run(["cp", "qBittorrent.conf", "qBittorrent/config/qBittorrent.conf"])
+trackers = check_output(["curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','"], shell=True).decode('utf-8').rstrip(',')
+subprocess.run(["aria2c", "--conf-path=/usr/src/app/a2c.conf"])
+with open("a2c.conf", "a+") as a:
+    a.write(f"bt-tracker=[{trackers}]")
 nox = subprocess.Popen(["qbittorrent-nox", "--profile=."])
+alive = subprocess.Popen(["python3", "alive.py"])
 time.sleep(1)
+
+
+
 Interval = []
 DRIVES_NAMES = []
 DRIVES_IDS = []
