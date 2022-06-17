@@ -1,4 +1,4 @@
-FROM mirrorultroid6/mega-sdk-python:latest
+FROM anasty17/mltb:heroku
 
 COPY . .
 RUN pip3 install --no-cache-dir -r requirements.txt
