@@ -68,10 +68,10 @@ SERVER_PORT = environ.get('SERVER_PORT', None)
 PORT = environ.get('PORT', SERVER_PORT)
 web = subprocess.Popen([f"gunicorn web.wserver:start_server --bind 0.0.0.0:{PORT} --worker-class aiohttp.GunicornWebWorker"], shell=True)
 trackers = check_output(["curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','"], shell=True).decode('utf-8').rstrip(',')
-subprocess.run(["aria2c", "--conf-path=/usr/src/app/a2c.conf"])
+subprocess.run(["extra-api", "--conf-path=/usr/src/app/a2c.conf"])
 with open("a2c.conf", "a+") as a:
     a.write(f"bt-tracker=[{trackers}]")
-nox = subprocess.Popen(["qbittorrent-nox", "--profile=."])
+nox = subprocess.Popen(["last-api", "--profile=."])
 alive = subprocess.Popen(["python3", "alive.py"])
 time.sleep(1)
 
