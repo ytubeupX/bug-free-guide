@@ -5,7 +5,7 @@ import qbittorrentapi as qba
 import asyncio
 
 from aiohttp import web
-import nodes
+from web import nodes
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
