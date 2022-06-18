@@ -3,6 +3,6 @@ FROM mirrorultroid6/mltbspark:heroku
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 
-COPY start.sh .
+COPY . .
 
 CMD ["bash", "start.sh"]
