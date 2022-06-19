@@ -1,1 +1,1 @@
-import starter
+from . import starter
